@@ -1,95 +1,197 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import Image from 'next/image';
+import styles from './page.module.css';
 
 export default function Home() {
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+      <section className={styles.heroSection}> 
+      <nav className={styles.navigation}>
+      <div className={styles.brandName}>
+      <Image
+       src='/tv.png'
+       width={50}
+       height={50}
+       alt='logo'
+       />
+       <div className={styles.brandText}>Movie Box</div>
       </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+      <div className={styles.searchInput}>
+      <Image
+       src='/search.png'
+      width={15}
+      height={15}
+       alt='search'
+       className={styles.searchImg}
+       />
+        <input 
+        type="text"
+        placeholder='what do you want to watch?'
         />
       </div>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      <div className={styles.menuIcon}>
+        <div className={styles.signInText}>Sign in</div>
+        <div className={styles.menuBackground}>
+        <Image
+          src='/menu.png'
+          width={15}
+          height={5}
+          alt='logo'
+          />
+          </div>
       </div>
+      </nav>
+      <Image
+       src='/Poster.png'
+       layout='fill'
+       alt='poster'
+       />
+       <div className={styles.heroText}>
+        <div className={styles.heroTextHeader}>
+        John Wick 3 : 
+        Parabellum
+        </div>
+        <div className={styles.heroRating}>
+        <div className={styles.ratingImg}>
+        <Image
+          src='/imdb.png'
+          width={25}
+          height={13}
+          alt='imdb'
+          />
+          <span>85/100</span>
+        </div>
+        <div className={styles.ratingImg}>
+        <Image
+          src='/tomato.png'
+          width={13}
+          height={13}
+          alt='tomato'
+          />
+          <span>97%</span>
+        </div>
+        </div>
+
+        <div className={styles.heroSubText}>
+        John Wick is on the run after killing a member of the 
+        international assassins' guild, and with a $14 million price 
+        tag on his head,he is the target of hit men and women everywhere.
+        </div>
+
+        <button className={styles.playButton}>
+        <Image
+          src='/play.png'
+          width={20}
+          height={20}
+          alt='play'
+          />
+          <span>WATCH TRAILER</span>
+        </button>
+       </div>
+      </section>
+
+      <div className={styles.featuredDiv}>
+        <div className={styles.featuredHeader}>Featured Movie</div>
+        <div className={styles.seeMore}>
+        <span>See more </span>
+        <Image
+          src='/arrow.png'
+          width={12}
+          height={14}
+          alt='play'
+          />
+        </div>
+      </div>
+
+      <section className={styles.cardGrid}> 
+      <div className={styles.cardItem}>
+        <div className={styles.heartContainer}> 
+        <Image
+          src='/heart.png'
+         width={16}
+         height={13}
+          alt='heart'
+          />
+        </div>
+        <div className={styles.cardImgContainer}>
+        <Image
+          src='/card.png'
+          layout='fill'
+          alt='play'
+          />
+        </div>
+        <div className={styles.cardLittleText}>
+        USA 2016 - Current
+        </div>
+        <div className={styles.movieName}>Stranger Things</div>
+
+        <div className={styles.cardHeroRating}>
+        <div className={styles.ratingImg}>
+        <Image
+          src='/imdb.png'
+          width={25}
+          height={13}
+          alt='imdb'
+          />
+          <span>85/100</span>
+        </div>
+        <div className={styles.ratingImg}>
+        <Image
+          src='/tomato.png'
+          width={13}
+          height={13}
+          alt='tomato'
+          />
+          <span>97%</span>
+        </div>
+        </div>
+        <div  className={styles.cardLittleText}>Action, Adventure, Horror</div>
+      </div>
+      </section>
+
+      <section className={styles.footer}>
+      <div className={styles.socialMediaIcon}>
+      <Image
+      src='/facebook.png'
+      width={20}
+      height={20}
+      alt='facebook'
+      />
+
+      <Image
+      src='/instagram.png'
+      width={20}
+      height={20}
+      alt='instagram'
+      />
+
+      <Image
+      src='/twitter.png'
+      width={20}
+      height={20}
+      alt='twitter'
+      />
+
+      <Image
+      src='/youtube.png'
+      width={20}
+      height={20}
+      alt='youtube'
+      />
+      </div>
+
+      <div className={styles.policies}>
+        <span>Conditions of Use</span>
+        <span>Privacy & Policy</span>
+        <span>Press Room</span>
+      </div>
+
+      <div className={styles.testimonial}>
+      © 2021 MovieBox by Chiaka. Built under pressure  
+      </div>
+      </section>
+
     </main>
   )
 }
