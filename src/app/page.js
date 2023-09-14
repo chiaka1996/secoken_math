@@ -134,6 +134,17 @@ export default function Home() {
         />
       </div>
 
+      {/* search button for mobile view */}
+      <div  className={styles.searchImgMobileContainer}>
+      <Image
+       src='/search.png'
+      width={15}
+      height={15}
+       alt='search'
+       className={styles.searchImgMobile}
+       />
+       </div>
+
       <div className={styles.menuIcon}>
         <div className={styles.signInText}>Sign in</div>
         <div className={styles.menuBackground}>
