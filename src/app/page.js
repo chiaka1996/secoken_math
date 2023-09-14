@@ -7,10 +7,56 @@ import "react-toastify/dist/ReactToastify.css";
 import Link from 'next/link';
 
 export default function Home() {
+  const [searchQuery, setSearchQuery] = useState('');
   const [movieList, setMovieList] = useState([]);
+  const [movieCategory, setMovieCategory] = useState('Featured')
+
+  const OnSearchQueryChange = (e) => {
+    let value = e.target.value;
+    setSearchQuery(value);
+  }
 
   console.log(movieList)
 
+  const fetchBySearchTitle = async (e) => {
+    try{
+      if(e.key === "Enter"){
+        const apiRequest = await fetch(
+          `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&include_adult=false&language=en-US&page=1`,
+           {
+             method: "GET",
+             headers: {
+               Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMmE5MzdlYTVkODc1YjBiZGRkZTI0MDA3ODJlNTQzNCIsInN1YiI6IjY0ZmZmMjI5ZTBjYTdmMDEyZWI4OGY0NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.X8o-EzCfeRuBrPEnOl9oyseIQNJloTeR5zDSNs3NZAg'
+             }
+           })
+   
+           const response = await apiRequest.json();
+           if(apiRequest.status === 200){
+            setMovieCategory(searchQuery)
+            const topTen = response.results.slice(0,10)
+             setMovieList([...topTen])
+           }
+
+           else{
+            toast.error("something went wrong, please reload the page", {
+              position: "top-right",
+              theme: "colored",
+            });
+           }
+
+      }
+    }
+    catch(error){
+      toast.error(`${error.message}`, {
+        position: "top-right",
+        theme: "colored",
+      });
+    }
+   
+  }
+
+ 
+//fectch the top 10 movies from the database
   const fetchAllMovies = async () => {
     try {
       const apiRequest = await fetch(
@@ -25,7 +71,6 @@ export default function Home() {
         const response = await apiRequest.json();
         if(apiRequest.status === 200){
           const topTen = response.results.slice(0,10)
-          console.log(topTen)
           setMovieList([...topTen])
         }
         else{
@@ -73,6 +118,9 @@ export default function Home() {
         <input 
         type="text"
         placeholder='what do you want to watch?'
+        value={searchQuery}
+        onChange={OnSearchQueryChange}
+        onKeyDown={fetchBySearchTitle}
         />
       </div>
 
@@ -138,7 +186,7 @@ export default function Home() {
       </section>
 
       <div className={styles.featuredDiv}>
-        <div className={styles.featuredHeader}>Featured Movie</div>
+        <div className={styles.featuredHeader}>{movieCategory} Movies</div>
         <div className={styles.seeMore}>
         <span>See more </span>
         <Image
@@ -152,15 +200,14 @@ export default function Home() {
 
       <section className={styles.cardGrid}> 
       {movieList.map((movie, i) => <Link  
-      href={{ pathname: '/movie/', query:{id : movie.id}  }}   
+         key={i}
+        href={{ pathname: '/movie/', query:{id : movie.id}  }}   
        style={{ textDecoration: "none"}} 
        >
         <div 
         data-testid='movie-card'
         className={styles.cardItem} 
-        key={i}
-        
-        >
+       >
         <div className={styles.heartContainer}> 
         <Image
           src='/heart.png'
