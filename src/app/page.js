@@ -1,9 +1,55 @@
+'use client'
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from './page.module.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Link from 'next/link';
 
 export default function Home() {
+  const [movieList, setMovieList] = useState([]);
+
+  console.log(movieList)
+
+  const fetchAllMovies = async () => {
+    try {
+      const apiRequest = await fetch(
+       'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1',
+        {
+          method: "GET",
+          headers: {
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMmE5MzdlYTVkODc1YjBiZGRkZTI0MDA3ODJlNTQzNCIsInN1YiI6IjY0ZmZmMjI5ZTBjYTdmMDEyZWI4OGY0NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.X8o-EzCfeRuBrPEnOl9oyseIQNJloTeR5zDSNs3NZAg'
+          }
+        })
+
+        const response = await apiRequest.json();
+        if(apiRequest.status === 200){
+          const topTen = response.results.slice(0,10)
+          console.log(topTen)
+          setMovieList([...topTen])
+        }
+        else{
+          toast.error("something went wrong, please reload the page", {
+            position: "top-right",
+            theme: "colored",
+          });
+        }
+
+    } catch (error) {
+      toast.error("something went wrong, please reload the page", {
+        position: "top-right",
+        theme: "colored",
+      });
+    }
+  }
+
+  useEffect(() => {
+    fetchAllMovies()
+  },[])
+
   return (
     <main className={styles.main}>
+      <ToastContainer />
       <section className={styles.heroSection}> 
       <nav className={styles.navigation}>
       <div className={styles.brandName}>
@@ -105,7 +151,16 @@ export default function Home() {
       </div>
 
       <section className={styles.cardGrid}> 
-      <div className={styles.cardItem}>
+      {movieList.map((movie, i) => <Link  
+      href={{ pathname: '/movie/', query:{id : movie.id}  }}   
+       style={{ textDecoration: "none"}} 
+       >
+        <div 
+        data-testid='movie-card'
+        className={styles.cardItem} 
+        key={i}
+        
+        >
         <div className={styles.heartContainer}> 
         <Image
           src='/heart.png'
@@ -116,15 +171,16 @@ export default function Home() {
         </div>
         <div className={styles.cardImgContainer}>
         <Image
-          src='/card.png'
+        data-testid= 'movie-poster'
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           layout='fill'
           alt='play'
           />
         </div>
-        <div className={styles.cardLittleText}>
-        USA 2016 - Current
+        <div className={styles.cardLittleText} data-testid='movie-release-date'>
+        {movie.release_date}
         </div>
-        <div className={styles.movieName}>Stranger Things</div>
+        <div className={styles.movieName} data-testid='movie-title'>{movie.title}</div>
 
         <div className={styles.cardHeroRating}>
         <div className={styles.ratingImg}>
@@ -148,6 +204,9 @@ export default function Home() {
         </div>
         <div  className={styles.cardLittleText}>Action, Adventure, Horror</div>
       </div>
+      </Link>
+      )}
+      
       </section>
 
       <section className={styles.footer}>
