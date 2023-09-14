@@ -5,11 +5,13 @@ import styles from './page.module.css';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from 'next/link';
+import CardLoader from "./skeletonFolder/movieCard";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
   const [movieList, setMovieList] = useState([]);
   const [movieCategory, setMovieCategory] = useState('Featured')
+  const [loader, setLoader] = useState(false)
 
   const OnSearchQueryChange = (e) => {
     let value = e.target.value;
@@ -21,6 +23,7 @@ export default function Home() {
   const fetchBySearchTitle = async (e) => {
     try{
       if(e.key === "Enter"){
+        setLoader(true)
         const apiRequest = await fetch(
           `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&include_adult=false&language=en-US&page=1`,
            {
@@ -32,12 +35,14 @@ export default function Home() {
    
            const response = await apiRequest.json();
            if(apiRequest.status === 200){
+            setLoader(false)
             setMovieCategory(searchQuery)
             const topTen = response.results.slice(0,10)
              setMovieList([...topTen])
            }
 
            else{
+            setLoader(false)
             toast.error("something went wrong, please reload the page", {
               position: "top-right",
               theme: "colored",
@@ -47,6 +52,7 @@ export default function Home() {
       }
     }
     catch(error){
+      setLoader(false)
       toast.error(`${error.message}`, {
         position: "top-right",
         theme: "colored",
@@ -59,6 +65,7 @@ export default function Home() {
 //fectch the top 10 movies from the database
   const fetchAllMovies = async () => {
     try {
+      setLoader(true)
       const apiRequest = await fetch(
        'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1',
         {
@@ -70,10 +77,12 @@ export default function Home() {
 
         const response = await apiRequest.json();
         if(apiRequest.status === 200){
+          setLoader(false)
           const topTen = response.results.slice(0,10)
           setMovieList([...topTen])
         }
         else{
+          setLoader(false)
           toast.error("something went wrong, please reload the page", {
             position: "top-right",
             theme: "colored",
@@ -81,6 +90,7 @@ export default function Home() {
         }
 
     } catch (error) {
+      setLoader(false)
       toast.error("something went wrong, please reload the page", {
         position: "top-right",
         theme: "colored",
@@ -198,6 +208,7 @@ export default function Home() {
         </div>
       </div>
 
+      {!loader ? 
       <section className={styles.cardGrid}> 
       {movieList.map((movie, i) => <Link  
          key={i}
@@ -253,8 +264,7 @@ export default function Home() {
       </div>
       </Link>
       )}
-      
-      </section>
+      </section> :  <CardLoader num="10" /> }
 
       <section className={styles.footer}>
       <div className={styles.socialMediaIcon}>
