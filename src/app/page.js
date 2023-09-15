@@ -12,6 +12,12 @@ export default function Home() {
   const [movieList, setMovieList] = useState([]);
   const [movieCategory, setMovieCategory] = useState('Featured')
   const [loader, setLoader] = useState(false)
+  const [mobileSearch, setMobileSearch] = useState(false)
+
+  const onClickSearchIcon = () => {
+    console.log('search')
+    setMobileSearch((search) => !search )
+  }
 
   const OnSearchQueryChange = (e) => {
     let value = e.target.value;
@@ -106,7 +112,7 @@ export default function Home() {
     <main className={styles.main}>
       <ToastContainer />
       <section className={styles.heroSection}> 
-      <nav className={styles.navigation}>
+        <nav className={styles.navigation}>
       <div className={styles.brandName}>
       <Image
        src='/tv.png'
@@ -142,6 +148,7 @@ export default function Home() {
       height={15}
        alt='search'
        className={styles.searchImgMobile}
+       onClick={onClickSearchIcon}
        />
        </div>
 
@@ -157,6 +164,19 @@ export default function Home() {
           </div>
       </div>
       </nav>
+
+      {/* search input for mobile. it appears when the search icon is clicked */}
+      {mobileSearch ? <div className={styles.mobileSearchInput}>
+        <input 
+        type="text"
+        placeholder='what do you want to watch?'
+        value={searchQuery}
+        onChange={OnSearchQueryChange}
+        onKeyDown={fetchBySearchTitle}
+        />
+      </div> : ''
+      }
+
       <Image
        src='/Poster.png'
        layout='fill'

@@ -313,4 +313,67 @@
     width: 70%;
     visibility: hidden;
   }
+
+  .mobileSearchInput{
+    width: 90%;
+    z-index: 1000;
+    position: absolute;
+    top: 15%;
+    left: 5%;
+  }
+
+  .mobileSearchInput input{
+    width: 95%;
+    height: 36px;
+    background: transparent;
+    border: 2px solid #D1D5DB;
+    outline: none;
+    border-radius: 6px;
+    color: white;
+    padding: 0 0 0 5%;
+  }
+  
+  .mobileSearchInput input::placeholder{
+    color: white;
+    font-size: 14px;
+  }
+
+  .heroText{
+    top: 24%;
+    left: 5%;
+    width: 95%;
+  }
+
+  .featuredDiv{
+    width: 90%;
+    margin: 5% 5%;
+  }
+
+  .featuredHeader{
+    font-size: 20px;
+  }
+
+  .seeMore span{
+    font-size: 14px;
+    margin: 0 5px 0 0;
+  }
+
+  .cardGrid{
+    grid-template-columns: 100%;
+    width: 90%;
+    margin: 0 5%;
+  }
+
+  .socialMediaIcon{
+    margin: 0 5%;
+  }
+
+  .policies, .testimonial{
+    width: 90%;
+    padding: 0 5%;
+  }
+
+  .policies{
+    flex-direction: column;
+  }
 }
