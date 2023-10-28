@@ -5,3 +5,278 @@
   padding: 0 0;
   font-family: 'DM Sans';
 }
+
+.brandName{
+  font-weight: 500;
+  font-size: 18px;
+  color: rgb(48, 3, 48);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+
+nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  padding: 1% 5%;
+  cursor: pointer;
+}
+
+.linksDiv{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: rgb(22, 22, 22);
+  width: 40%;
+}
+
+.signInButton{
+  background-color: rgb(48, 3, 48);
+  color: white;
+  height: 50px;
+  border-radius: 6px;
+  padding: 0 2%;
+}
+
+.heroSection{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 70%;
+  margin: 7% 15%;
+}
+
+.textSection{
+  width: 40%;
+}
+
+.heroHeader{
+  margin: 20% 0 2% 0;
+  font-size: 35px;
+  color:  rgb(48, 3, 48);
+  font-weight: 800;
+}
+
+.heroSubset{
+  color: rgb(22, 22, 22);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.learnMoreBtn{
+  padding: 0 10%;
+  height: 50px;
+  background-color: rgb(48, 3, 48);
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+   border-radius: 10px;
+   margin: 5% 0 0 0;
+   border: 1px solid rgb(48, 3, 48);
+}
+
+.imgDiv{
+  width: 50%;
+  height: 60vh;
+  position: relative;
+  border-radius: 25px;
+}
+
+.imgDiv::after{
+  content: url('/dots.png');
+  position: absolute;
+  top: -10%;
+  right: -10%;
+}
+
+.imgDiv::before{
+  content: url('/dots2.png');
+  position: absolute;
+  bottom: -10%;
+  left: -10%;
+}
+
+.bannerImg{
+  border-radius: 25px;
+  z-index: 200;
+}
+
+.aboutUs{
+  background-color: rgb(245, 243, 243);
+  padding: 2% 10%;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.aboutImg{
+  width: 60%;
+  height: 70vh;
+  position: relative;
+}
+
+.aboutWriteUp{
+  width: 35%;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.aboutHeader{
+  font-size: 35px;
+  font-weight: 800;
+  color:rgb(48, 3, 48);
+  margin: 25% 0 0 0;
+}
+
+.aboutMission{
+  margin: 5% 0;
+}
+
+.educatorResource{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+  margin: 5% 10% 5% 10%;
+}
+
+
+.educatorWriteUp{
+  width: 50%;
+  padding: 0 0 0 0;
+}
+
+.resourcesHeader{
+  font-size: 35px;
+  font-weight: 800;
+  color:rgb(48, 3, 48);
+  margin: 5% 0 5% 0;
+}
+
+.materialContainerGrid{
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  justify-content: space-between;
+}
+
+.materialContainer{
+  background-color: rgb(241, 183, 241);
+  height: 30vh;
+  text-align: center;
+  margin: 0 0 10% 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.materialName{
+  font-size: 18px;
+  font-weight: 800;
+  margin: 2% 0 0 0;
+}
+
+.educatorImgDivContainer{
+  width: 35%;
+  position: relative;
+}
+
+.educatorImg1, .studentimg4{
+  border-radius: 50%;
+  position: absolute;
+  top: 10%;
+  right: 0;
+}
+
+.educatorImg2, .studentimg5{
+  border-radius: 50%;
+  position: absolute;
+  bottom: 5%;
+  left: 0%;
+}
+
+.studentimg4, .studentimg5{
+  border-radius: 8px;
+}
+
+.donateContainer{
+  background-image: url('/backgroundImg.jpg');
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 80vh;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.donateContainer::after{
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  background-color: black;
+  width: 100%;
+  height: 80vh;
+  opacity: 0.8;
+}
+
+.donateSubDiv{
+  width: 43%;
+  z-index: 100;
+  text-align: center;
+}
+
+.donateHeader{
+  color: white;
+  font-weight: 800;
+  font-size: 50px;
+}
+
+.donateSubHeader{
+  color: white;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 2% 10%;
+  width: 80%;
+}
+
+.teacherBtn{
+  background-color: rgb(240, 169, 240);
+  font-weight: 700;
+  font-size: 24px;
+  height: 80px;
+  width: 50%;
+  border: 1px solid rgb(48, 3, 48);
+  border-radius: 8px;
+  margin: 3% 0;
+  cursor: pointer;
+}
+
+.donateBtn{
+  font-weight: 700;
+  font-size: 24px;
+  height: 80px;
+  width: 50%;
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+footer{
+  margin: 2% 0 0 0;
+  text-align: center;
+  font-weight: 600;
+}
